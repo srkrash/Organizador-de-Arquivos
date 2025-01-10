@@ -9,7 +9,7 @@ O Organizador de Arquivos é uma ferramenta simples e de fácil utilização. É
 <br>
 <br>
 <p align="center">
-<img src="https://imgur.com/Z2DznGX.png" alt="SpotiTube Logo" style="width:500px; text-align=center"/></p>p
+<img src="https://imgur.com/Z2DznGX.png" alt="OrgArq Logo" style="width:500px; text-align=center"/></p>
 
 ## Execução
 Basta apenas abrir o executável OrgArq.exe
