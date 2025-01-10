@@ -13,6 +13,7 @@ O Organizador de Arquivos é uma ferramenta simples e de fácil utilização. É
 
 ## Execução
 Basta apenas abrir o executável OrgArq.exe
+> Há uma chance de seu antivírus mover o executável para a quarentena. Insira o executável na lista de exclusão da varredura de seu antivírus.
 
 ## Utilização
 Selecione o diretório clicando em Selecionar. Logo após, clique no botão Organizar. Será apresentado um popup informando quantas pastas foram criadas no diretório.<br><br>
