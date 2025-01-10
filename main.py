@@ -26,14 +26,14 @@ class MainScreen:
         
     def open_window(self) -> None:
         layout: list[list[sg.Element]] = self.mainLayout()
-        window: sg.Window = sg.Window('Organizador de arquivos', layout=layout, finalize=True)
+        window: sg.Window = sg.Window('Organizador de arquivos', layout=layout, finalize=True, icon='logo.ico')
         while True:
             event, values = window.read()
             if event == sg.WIN_CLOSED:
                 break
             elif event == self.key_btn_organize:
                 n_types: int = self.control.organize_by_type(values[self.key_in_dir])
-                sg.popup(f'Foram organizados {n_types} tipos de arquivos com sucesso!', title='Organizador de arquivos')
+                sg.popup(f'Foram organizados {n_types} tipos de arquivos com sucesso!', title='Organizador de arquivos', icon='logo.ico')
             
 class Main:
     def __init__(self) -> None:
