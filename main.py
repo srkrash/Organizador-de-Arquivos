@@ -32,8 +32,8 @@ class MainScreen:
             if event == sg.WIN_CLOSED:
                 break
             elif event == self.key_btn_organize:
-                n_types: int = self.control.organize_by_type(values[self.key_in_dir])
-                sg.popup(f'Foram organizados {n_types} tipos de arquivos com sucesso!', title='Organizador de arquivos', icon='logo.ico')
+                n_categories: int = self.control.organize_by_type(values[self.key_in_dir])
+                sg.popup(f'Foram organizadas {n_categories} categorias de arquivos com sucesso!', title='Organizador de arquivos', icon='logo.ico')
             
 class Main:
     def __init__(self) -> None:
@@ -41,61 +41,66 @@ class Main:
         
     def organize_by_type(self, dir: str) -> int:
         """
-        Organizes files in a directory by type.
+        Organizes files in a directory by category.
 
         Args:
             dir (str): The directory to organize.
 
         Returns:
-            int: The number of distinct file types found.
+            int: The number of distinct categories created.
 
         Raises:
             FileNotFoundError: If the directory does not exist.
             OSError: If there is an error creating a new directory.
             OSError: If there is an error moving a file.
         """
-        # List to store distinct file types
-        types: list[str] = []
+        categories = {
+            'Imagens': ['.png', '.jpg', '.jpeg', '.bmp', '.gif', '.tiff', '.webp', '.svg'],
+            'Audios': ['.mp3', '.wav', '.flac', '.aac', '.ogg', '.m4a'],
+            'Vídeos': ['.mp4', '.avi', '.mkv', '.mov', '.wmv', '.flv', '.webm', '.mpeg'],
+            'Documentos': ['.txt', '.xlsx', '.xls', '.pdf', '.doc', '.docx', '.ppt', '.pptx', '.rtf', '.csv'],
+            'Arquivos e Instaladores': ['.exe', '.msi', '.zip', '.rar', '.7z', '.tar', '.gz', '.pkg', '.deb', '.rpm', '.iso']
+        }
 
         # Check if directory exists
         if not os.path.exists(dir):
             raise FileNotFoundError(f'Directory {dir} does not exist.')
 
+        categories_created: set = set()
+
         # Iterate over files in the directory
         for file in os.listdir(dir):
+            item_path = os.path.join(dir, file)
             
-            # Check if the file is a directory
-            if os.path.isdir(f'{dir}/{file}'):
+            # Check if the item is a file
+            if not os.path.isfile(item_path):
                 continue
             
-            # Get the file extension in uppercase
-            actual_type = os.path.splitext(file)[1].upper()
+            # Get the file extension in lowercase
+            ext = os.path.splitext(file)[1].lower()
 
-            # Check if the file has a valid extension
-            if actual_type:
-                # If the file type is not already in the list, create a new directory
-                if actual_type not in types:
-                    new_dir = os.path.join(dir, 'Arquivos '+ actual_type)
-                    if not os.path.exists(new_dir):
-                        try:
-                            os.makedirs(new_dir)
-                        except OSError as error:
-                            raise OSError(f'{error}: {new_dir}')
+            # Find the target category
+            target_category = 'Outros'
+            for cat, extensions in categories.items():
+                if ext in extensions:
+                    target_category = cat
+                    break
 
-                    # Move the file to the new directory and add the file type to the list
-                    try:
-                        shutil.move(os.path.join(dir, file), os.path.join(new_dir, file))
-                        types.append(actual_type)
-                    except OSError as error:
-                        w.warn(f'{error}: {file}\n{types}')
-                else:
-                    # If the file type is already in the list, move the file to the existing directory
-                    new_dir = os.path.join(dir, 'Arquivos '+ actual_type)
-                    try:
-                        shutil.move(os.path.join(dir, file), os.path.join(new_dir, file))
-                    except OSError as error:
-                        w.warn(f'{error}: {file}\n{types}')
-        return len(types)
+            new_dir = os.path.join(dir, target_category)
+            if not os.path.exists(new_dir):
+                try:
+                    os.makedirs(new_dir)
+                except OSError as error:
+                    raise OSError(f'{error}: {new_dir}')
+
+            # Move the file to the new directory
+            try:
+                shutil.move(item_path, os.path.join(new_dir, file))
+                categories_created.add(target_category)
+            except OSError as error:
+                w.warn(f'{error}: {file}\n{categories_created}')
+
+        return len(categories_created)
         
     def run(self) -> None:
         MainScreen().open_window()
