@@ -1,37 +1,73 @@
-# Organizador de Arquivos
-> Ferramenta que organiza os arquivos de um diretório criando pastas para cada tipo de arquivo existente.
-<br>
-<p>
-<img alt="Python ver." src="https://img.shields.io/badge/python%20-%203.14-%20green?logo=python">
-<img alt="PySimpleGUI ver." src="https://img.shields.io/badge/PySimpleGUI-4.60.5-blue">
-</p>
-O Organizador de Arquivos é uma ferramenta simples e de fácil utilização. É informado qual será o diretório que deverá ser organizado e confirmado. A ferramenta irá classificar os arquivos dentro desse diretório por tipo e colocar cada tipo em uma pasta.
-<br>
-<br>
-<p align="center">
-<img src="https://imgur.com/Z2DznGX.png" alt="OrgArq Logo" style="width:500px; text-align=center"/></p>
+<div align="center">
+  <img src="https://imgur.com/Z2DznGX.png" alt="OrgArq Logo" width="300px"/>
+  
+  # 📂 Organizador de Arquivos
 
-## Execução
-Basta apenas abrir o executável OrgArq.exe
-> Há uma chance de seu antivírus mover o executável para a quarentena. Insira o executável na lista de exclusão da varredura de seu antivírus.
+  *Uma ferramenta simples e eficiente para organizar automaticamente seus arquivos direto pelo Windows.*
 
-## Utilização
-Selecione o diretório clicando em Selecionar. Logo após, clique no botão Organizar. Será apresentado um popup informando quantas pastas foram criadas no diretório.<br><br>
-<img alt = "Janela do organizador de arquivos" src="https://i.imgur.com/gQhiN3o.png"><br><br>
+  <p>
+    <img alt="Python" src="https://img.shields.io/badge/Python-3.x-blue?style=for-the-badge&logo=python&logoColor=white">
+    <img alt="PySimpleGUI" src="https://img.shields.io/badge/PySimpleGUI-4.x-green?style=for-the-badge">
+  </p>
+  
+  <p>
+    <a href="https://github.com/srkrash/Organizador-de-Arquivos">
+      <img src="https://img.shields.io/github/languages/count/srkrash/Organizador-de-Arquivos?style=flat-square">
+    </a>
+    <a href="https://github.com/srkrash/Organizador-de-Arquivos/commits/main">
+      <img src="https://img.shields.io/github/last-commit/srkrash/Organizador-de-Arquivos?style=flat-square">
+    </a>
+  </p>
+</div>
 
-## Dependências
+---
 
--> <a href="https://pypi.org/project/PySimpleGUI/">PySimpleGUI
-</a>
+## 📖 Sobre o Projeto
+O **Organizador de Arquivos** é uma ferramenta com interface gráfica super amigável que arruma a bagunça dos seus diretórios em questão de instantes.
 
-```sh
+Ao selecionar uma pasta, o programa lê o conteúdo e agrupa os arquivos automaticamente nas categorias abaixo:
+
+| 📂 Categoria | 📄 Extensões Suportadas |
+|-------------|----------------------------|
+| **Imagens** | `.png`, `.jpg`, `.jpeg`, `.bmp`, `.gif`, `.tiff`, `.webp`, `.svg` |
+| **Áudios** | `.mp3`, `.wav`, `.flac`, `.aac`, `.ogg`, `.m4a` |
+| **Vídeos** | `.mp4`, `.avi`, `.mkv`, `.mov`, `.wmv`, `.flv`, `.webm`, `.mpeg` |
+| **Documentos** | `.txt`, `.xlsx`, `.xls`, `.pdf`, `.doc`, `.docx`, `.ppt`, `.pptx`, `.rtf`, `.csv` |
+| **Arquivos e Instaladores** | `.exe`, `.msi`, `.zip`, `.rar`, `.7z`, `.tar`, `.gz`, `.pkg`, `.deb`, `.rpm`, `.iso` |
+| **Outros** | Qualquer outra extensão não mapeada |
+
+<br/>
+
+## 🚀 Como Funciona?
+
+1. Abra o aplicativo.
+2. Na interface principal, clique em **Selecionar** e escolha o diretório que deseja organizar.
+3. Clique no botão **Organizar**.
+4. Uma mensagem aparecerá informando quantas categorias de arquivos foram organizadas!
+
+> **Preview da Tela:** <br/>
+> <img alt="Janela do Organizador de Arquivos" src="https://i.imgur.com/gQhiN3o.png" width="400"/>
+
+---
+
+## ⚙️ Dependências
+
+O projeto utiliza a biblioteca **[PySimpleGUI](https://pypi.org/project/PySimpleGUI/)** para construir a janela do aplicativo.
+
+Para instalar as dependências manualmente e rodar o projeto a partir do código fonte:
+
+```bash
 pip install PySimpleGUI
 ```
 
-<p align="center">
-  <img alt = "GitHub language count" src="https://img.shields.io/github/languages/count/srkrash/Organizador-de-Arquivos">
+Em seguida, execute o arquivo principal:
+```bash
+python main.py
+```
 
-  <a href="https://github.com/srkrash/Organizador-de-Arquivos">
-    <img src="https://img.shields.io/github/last-commit/srkrash/Organizador-de-Arquivos">
-  </a>
-</p>
+---
+
+## ⚡ Executável (Windows)
+Se você estiver utilizando a versão convertida em `.exe`, basta executar o `OrgArq.exe`.
+
+> ⚠️ **Atenção:** Em alguns casos, seu software antivírus pode tratar programas empacotados pelo gerador de executáveis do Python (como o PyInstaller) como falso-positivos, movendo seu executável para a quarentena. Caso isso ocorra, adicione o diretório/arquivo na lista de exclusão do seu antivírus.
